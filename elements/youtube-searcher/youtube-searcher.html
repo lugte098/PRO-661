@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="youtube-searcher">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <iron-ajax
+                auto
+                url="https://www.googleapis.com/youtube/v3/search"
+                params='{{_getParams(query)}}'
+                handle-as="json"
+                on-response="handleResponse"
+                debounce-duration="300"></iron-ajax>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'youtube-searcher',
+            properties: {
+                listdata: {
+                    type: Array,
+                    reflectToAttribute: true,
+                    notify: true
+                },
+
+                query: {
+                    type: String
+                }
+            },
+            attached: function () {
+                this.listdata = [];
+            },
+            handleResponse: function (data) {
+                this.listdata = data.detail.response.items;
+            },
+            _getParams: function(queryString) {
+                return {part: "snippet", q: queryString, key: "AIzaSyCR5In4DZaTP6IEZQ0r1JceuvluJRzQNLE", type: "video"};
+            }
+        })
+    </script>
+</dom-module>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YouTube Search Engine</title>
+
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="elements/youtube-viewer/youtube-viewer.html">
+    <link rel="import" href="elements/youtube-searcher/youtube-searcher.html">
+
+    <link rel="shortcut icon" sizes="32x32" href="/images/app-icon-32.png">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Noto', sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            background-color: #eee;
+        }
+
+        .container {
+            display: block;
+            position: relative;
+
+            width: 80%;
+            height: 1600px;
+
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+
+            border: 1px solid black;
+        }
+
+        .result-container {
+            display: block;
+
+            width: 80%;
+            height: 400px;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .result-container div.item-container {
+            display: block;
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            border: 1px solid black;
+        }
+
+        .link {
+            cursor: default;
+            color: blue;
+        }
+
+        .link:hover {
+            cursor: pointer;
+            color: red;
+        }
+
+        .thumb {
+            display: block;
+
+            position: relative;
+        }
+
+        #viewer {
+            display: block;
+            position: relative;
+
+            margin-top: 400px;
+            margin-left: auto;
+            margin-right: auto;
+
+            width: 80%;
+            height: 45%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input id="input" type="text" value="test" />
+
+        <template is="dom-bind">
+            <youtube-searcher id="searcher" query="test" listdata="{{listdata}}"></youtube-searcher>
+            <div class="result-container">
+                <template is="dom-repeat" items="{{listdata}}">
+                    <div class="item-container">
+                        <div>Title: <span>{{item.snippet.title}}</span></div>
+                        <div>Video ID: <span class="link" onclick="viewer.videoid = this.innerHTML;">{{item.id.videoId}}</span></div>
+                        <div class="thumb"><img src="{{item.snippet.thumbnails.default.url}}" /></div>
+                    </div>
+                </template>
+            </div>
+
+            <youtube-viewer id="viewer" videoid="WiXTJ0MNJqA"></youtube-viewer>
+        </template>
+    </div>
+
+    <script>
+        input.addEventListener('keyup', function() {
+            searcher.query = this.value;
+        })
+    </script>
+
+</body>
+</html>

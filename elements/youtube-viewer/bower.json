@@ -1,0 +1,6 @@
+{
+  "name": "youtube-viewer",
+  "dependencies": {
+    "polymer": "polymer/polymer#^1.6.1"
+  }
+}

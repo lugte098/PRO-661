@@ -1,0 +1,20 @@
+{
+  "name": "youtube-viewer",
+  "authors": [
+    "Ivar Lugtenburg"
+  ],
+  "private": true,
+  "dependencies": {
+    "polymer": "polymer/polymer#^1.6.1",
+    "youtube-viewer": ".\\elements\\youtube-viewer",
+    "youtube-searcher": ".\\elements\\youtube-searcher"
+  },
+  "devDependencies": {},
+  "description": "YouTube viewer",
+  "main": "index.html",
+  "keywords": [
+    "youtube"
+  ],
+  "license": "MIT",
+  "homepage": ""
+}
